@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import Result from './Result'
 const InputField = ({ circleField, squareField, rectangleField, triangleField, onResult}) => {
 
   const [radius, setRadius] = useState(0)
@@ -24,14 +24,11 @@ const InputField = ({ circleField, squareField, rectangleField, triangleField, o
     } else {
       setAnswer((base * height)/2)
     }
-
-    onResult(answer);
-
-    console.log("Passing result to App.js")
   }
 
   return (
-      <form onSubmit={onSubmit}>
+    <>
+    <form onSubmit={onSubmit}>
         {circleField && <label>Radius: </label>}
         {circleField && <input type='number' placeholder=" Input radius here" value={radius} onChange={(e) => setRadius(e.target.value)}/>}
         {squareField && <label>Side: </label>}
@@ -46,6 +43,9 @@ const InputField = ({ circleField, squareField, rectangleField, triangleField, o
         {triangleField && <input type="text" placeholder=" Input height here" value={height} onChange={(e) => setHeight(e.target.value)}/>}
         <input type="submit" value="Calculate"/><br/>
       </form>
+      <Result result={answer}/>
+    </>
+      
   )
 };
 

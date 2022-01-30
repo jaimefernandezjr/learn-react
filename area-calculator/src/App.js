@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Result from './components/Result';
 import Header from './components/Header';
 import Button from './components/Button';
 import InputField from './components/InputField';
@@ -11,25 +10,16 @@ function App() {
   const [isSquare, setIsSquare] = useState(true);
   const [isRectangle, setIsRectangle] = useState(true);
   const [isTriangle, setIsTriangle] = useState(true);
-  const [isResult, setIsResult] = useState(false);
   const [isGoBack, setIsGoBack] = useState(false);
   const [isInputField, setIsInputField] = useState(false)
-  const [result, setResult] = useState(0)
-
-  //SWITCHES FOR FIELDS
-  const [circleField, setCircleField] = useState(false)
-  const [squareField, setSquareField] = useState(false)
-  const [rectangleField, setRectangleField] = useState(false)
-  const [triangleField, setTriangleField] = useState(false)
-  
 
   const goBack = () => {
+    setIsInputField(false)
     setIsCircle(true)
     setIsSquare(true)
     setIsTriangle(true)
     setIsRectangle(true)
     setIsGoBack(false)
-    setIsResult(false)
   }
 
   const showShape = () => {
@@ -39,27 +29,23 @@ function App() {
     setIsTriangle(false)
     setIsRectangle(false)
     setIsGoBack(true)
-    setIsResult(true)
   }
   
   const showCircle = () => {
     showShape();
-    setCircleField(true)
+    setIsCircle(true)
   }
   const showSquare = () => {
     showShape();
-    setSquareField(true)
+    setIsSquare(true)
   }
   const showRectangle = () => {
     showShape();
-    setRectangleField(true)
+    setIsRectangle(true)
   }
   const showTriangle = () => {
     showShape();
-    setTriangleField(true)
-  }
-  const showResult = () => {
-    
+    setIsTriangle(true)
   }
 
   return (
@@ -71,7 +57,7 @@ function App() {
         {isRectangle && <Button className='rectangle-btn btn' text='Area of Rectangle' color='violet' onClick={showRectangle}/>}
         {isTriangle && <Button className='triangle-btn btn' text='Area of Triangle' color='pink' onClick={showTriangle}/>}
         {isGoBack && <Button className='back-btn btn' text='< Go Back' color='maroon' onClick={goBack}/>}
-        {isInputField && <InputField circleField={circleField} squareField={squareField} rectangleField={rectangleField} triangleField={triangleField} onResult={setResult}/>}
+        {isInputField && <InputField circleField={isCircle} squareField={isSquare} rectangleField={isRectangle} triangleField={isTriangle}/>}
       </div>
     </div>
   );
